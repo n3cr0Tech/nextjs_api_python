@@ -1,12 +1,16 @@
-import datetime
+import sys, getopt
+import json
+from datetime import datetime
+from motor_module import Motor_Module
 
-f = open("fooFile.txt", "w")
-f.write("Yo it's me python\n")
+def main():            
+    motor_module = Motor_Module()  
+    json_obj = json.loads(sys.argv[1])    
+    print("args that python received: {}".format(sys.argv))        
+    print('param1: ' + str(json_obj['testData']))
+    # print('param2: ' + json_obj['servoNod'])
+    # motor_module.process_ingress_data(json_obj)
+    print("moved motor ts: {}".format(datetime.now()))
 
-# Get current date and time
-current_time = datetime.datetime.now()
-# Print date and time stamp
-ts = "Current date and time:" + str(current_time)
-f.write(ts)
-f.close()
-print("python script created a new file")
+if __name__ == "__main__":
+    sys.exit(main())
